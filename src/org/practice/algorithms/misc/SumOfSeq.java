@@ -1,7 +1,7 @@
 package org.practice.algorithms.misc;
 
 /*
-Given an array A of positive integers {n, n+1, n+2, …, m},
+Given an array A of positive integers {n, n+1, n+2, …, m-2, m-1, m},
 write a function that will return sum of all integers in the array.
 
 Examples: If A = {1, 2, 3, 4, 5}, then the function will return 15 because 1 + 2 + 3 + 4 + 5 => 15.
