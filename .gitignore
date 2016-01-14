@@ -1,0 +1,48 @@
+syntax: glob
+
+~*
+*.swp
+*.log
+nohup.out
+.DS_Store
+activemq-data/
+
+# Java artifacts
+*.class
+*.jar
+*.war
+*.ear
+*.car
+*.rar
+*.bar
+*.sar
+
+# Maven artifacts
+target/
+*.ser
+*.ec
+
+# IntelliJ project artifacts
+out/
+.idea/
+*.iml
+*.eml
+*.ipr
+*.iws
+*.uml
+rebel.xml
+atlassian-ide-*.xml
+
+# Eclipse-based project artifacts
+.settings/
+.metadata/
+*.project
+*.classpath
+*.springBeans
+
+# NetBeans project artifacts
+nb-configuration.xml
+
+# Sublime project artifacts
+*.sublime-project
+*.sublime-workspace
