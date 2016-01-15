@@ -8,7 +8,9 @@ Examples: If A = {1, 2, 3, 4, 5}, then the function will return 15 because 1 + 2
 */
 public class SumOfSeq {
     public static void main(String[] args) {
-        int[] seq = {};
+        assert sumOfSeq(null) == 0;
+
+        int[] seq = new int[]{};
         assert sumOfSeq(seq) == 0;
 
         seq = new int[] {1, 2, 3, 4, 5};
@@ -19,11 +21,14 @@ public class SumOfSeq {
     }
 
     public static int sumOfSeq(int[] seq) {
+        if (seq == null) {
+            return 0;
+        }
+
         int sum = 0;
         for (int num : seq) {
             sum += num;
         }
-
         return sum;
     }
 }
