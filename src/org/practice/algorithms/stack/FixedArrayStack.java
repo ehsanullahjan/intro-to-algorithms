@@ -2,54 +2,55 @@ package org.practice.algorithms.stack;
 
 import org.practice.algorithms.adt.Stack;
 
-public class FixedArrayStack<T> implements Stack<T> {
-    @SuppressWarnings("unchecked")
-    private Object[] items;
-    int count;
+import java.util.NoSuchElementException;
 
+public class FixedArrayStack<T> implements Stack<T> {
+    private T[] items;
+    int top;
+
+    @SuppressWarnings("unchecked")
     public FixedArrayStack(int size) {
-        items = new Object[size];
-        count = 0;
+        items = (T[])new Object[size];
+        top = 0;
     }
 
     @Override
     public void push(T item) {
-        if (count > 7) {
+        if (size() == capacity()) {
             throw new IllegalStateException("Stack overflow");
         }
-        items[count++] = item;
+        items[top++] = item;
     }
 
     @Override
     public T pop() {
-        if(items[0]==null){
-            throw new IllegalStateException("Stack underflow");
+        if (isEmpty()) {
+            throw new NoSuchElementException();
         }
-        Object ElementSave = items[count - 1];
-        items[count - 1] = null;
-        count--;
-        return (T) ElementSave;
+
+        T element = items[top - 1];
+        items[top - 1] = null;
+        top--;
+        return element;
     }
 
     @Override
     public T peek() {
-        if(items[0]==null){
-           throw new IllegalStateException("Stack underflow");
-            }
-        return (T) items[count- 1];
+        if (items[0] == null) {
+            throw new NoSuchElementException();
+        }
+
+        return items[top - 1];
     }
 
     @Override
     public int size() {
-        return count;
+        return top;
     }
 
     @Override
     public boolean isFull() {
-       if (size() == capacity()){
-           return true;
-       }
-        return false;
+        return size() == capacity();
     }
 
     private int capacity() { return items.length;
@@ -57,10 +58,7 @@ public class FixedArrayStack<T> implements Stack<T> {
 
     @Override
     public boolean isEmpty() {
-      if(count==0){
-          return true;
-      }
-        return false;
+        return top == 0;
     }
 
     public static void main(String[] args) {
@@ -83,18 +81,8 @@ public class FixedArrayStack<T> implements Stack<T> {
         assert stack.size() == 0;
         assert stack.isEmpty();
 
-        /*
-        if (stack is full) {
-            throw new IllegalStateException("Stack overflow");
-        }
-
-        ...
-
-
-        if (stack is empty) {
-            throw new IllegalStateException("Stack underflow");
-        }
-
-       */
+        stack.push("Tommy");
+        assert stack.size() == 1;
+        assert stack.pop().equals("Tommy");
     }
 }
