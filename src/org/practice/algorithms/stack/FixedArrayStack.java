@@ -17,8 +17,7 @@ public class FixedArrayStack<T> implements Stack<T> {
         if (count > 7) {
             throw new IllegalStateException("Stack overflow");
         }
-        items[count] = item;
-        count++;
+        items[count++] = item;
     }
 
     @Override
@@ -26,8 +25,8 @@ public class FixedArrayStack<T> implements Stack<T> {
         if(items[0]==null){
             throw new IllegalStateException("Stack underflow");
         }
-        Object ElementSave = items[items.length - 1];
-        items[items.length - 1] = null;
+        Object ElementSave = items[count - 1];
+        items[count - 1] = null;
         count--;
         return (T) ElementSave;
     }
@@ -37,31 +36,30 @@ public class FixedArrayStack<T> implements Stack<T> {
         if(items[0]==null){
            throw new IllegalStateException("Stack underflow");
             }
-        return (T) items[items.length - 1];
+        return (T) items[count- 1];
     }
 
     @Override
     public int size() {
-        return items.length;
+        return count;
     }
 
     @Override
     public boolean isFull() {
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] == null) {
-                return false;
-            }
-        }
-        return true;
+       if (size() == capacity()){
+           return true;
+       }
+        return false;
+    }
+
+    private int capacity() { return items.length;
     }
 
     @Override
     public boolean isEmpty() {
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] == null) {
-                return true;
-            }
-        }
+      if(count==0){
+          return true;
+      }
         return false;
     }
 
